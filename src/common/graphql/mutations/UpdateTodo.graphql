@@ -1,0 +1,6 @@
+mutation UpdateToDo($id: uuid!, $todo: todo_set_input!) {
+  update_todo_by_pk(pk_columns: { id: $id }, _set: $todo) {
+    id
+    complete
+  }
+}

@@ -1,0 +1,87 @@
+- table:
+    schema: public
+    name: comments
+  object_relationships:
+  - name: todo
+    using:
+      foreign_key_constraint_on: todo_id
+  insert_permissions:
+  - role: public
+    permission:
+      check: {}
+      columns:
+      - id
+      - comment
+      - todo_id
+      - created_at
+      - updated_at
+      backend_only: false
+  select_permissions:
+  - role: public
+    permission:
+      columns:
+      - comment
+      - created_at
+      - updated_at
+      - id
+      - todo_id
+      filter: {}
+  update_permissions:
+  - role: public
+    permission:
+      columns:
+      - comment
+      - id
+      - todo_id
+      filter: {}
+      check: {}
+  delete_permissions:
+  - role: public
+    permission:
+      filter: {}
+- table:
+    schema: public
+    name: todo
+  array_relationships:
+  - name: comments
+    using:
+      foreign_key_constraint_on:
+        column: todo_id
+        table:
+          schema: public
+          name: comments
+  insert_permissions:
+  - role: public
+    permission:
+      check: {}
+      columns:
+      - complete
+      - description
+      - id
+      - title
+      backend_only: false
+  select_permissions:
+  - role: public
+    permission:
+      columns:
+      - complete
+      - title
+      - description
+      - created_at
+      - updated_at
+      - id
+      filter: {}
+  update_permissions:
+  - role: public
+    permission:
+      columns:
+      - complete
+      - description
+      - id
+      - title
+      filter: {}
+      check: {}
+  delete_permissions:
+  - role: public
+    permission:
+      filter: {}

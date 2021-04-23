@@ -1,0 +1,469 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: query_root
+    mutation: mutation_root
+    subscription: subscription_root
+}
+
+"columns and relationships of \"comments\""
+type comments {
+    comment: String!
+    created_at: timestamptz
+    id: uuid!
+    "An object relationship"
+    todo: todo
+    todo_id: uuid
+    updated_at: timestamptz
+}
+
+"response of any mutation on the table \"comments\""
+type comments_mutation_response {
+    "number of affected rows by the mutation"
+    affected_rows: Int!
+    "data of the affected rows by the mutation"
+    returning: [comments!]!
+}
+
+"mutation root"
+type mutation_root {
+    "delete data from the table: \"comments\""
+    delete_comments(
+        "filter the rows which have to be deleted"
+        where: comments_bool_exp!
+    ): comments_mutation_response
+    "delete single row from the table: \"comments\""
+    delete_comments_by_pk(id: uuid!): comments
+    "delete data from the table: \"todo\""
+    delete_todo(
+        "filter the rows which have to be deleted"
+        where: todo_bool_exp!
+    ): todo_mutation_response
+    "delete single row from the table: \"todo\""
+    delete_todo_by_pk(id: uuid!): todo
+    "insert data into the table: \"comments\""
+    insert_comments(
+        "the rows to be inserted"
+        objects: [comments_insert_input!]!,
+        "on conflict condition"
+        on_conflict: comments_on_conflict
+    ): comments_mutation_response
+    "insert a single row into the table: \"comments\""
+    insert_comments_one(
+        "the row to be inserted"
+        object: comments_insert_input!,
+        "on conflict condition"
+        on_conflict: comments_on_conflict
+    ): comments
+    "insert data into the table: \"todo\""
+    insert_todo(
+        "the rows to be inserted"
+        objects: [todo_insert_input!]!,
+        "on conflict condition"
+        on_conflict: todo_on_conflict
+    ): todo_mutation_response
+    "insert a single row into the table: \"todo\""
+    insert_todo_one(
+        "the row to be inserted"
+        object: todo_insert_input!,
+        "on conflict condition"
+        on_conflict: todo_on_conflict
+    ): todo
+    "update data of the table: \"comments\""
+    update_comments(
+        "sets the columns of the filtered rows to the given values"
+        _set: comments_set_input,
+        "filter the rows which have to be updated"
+        where: comments_bool_exp!
+    ): comments_mutation_response
+    "update single row of the table: \"comments\""
+    update_comments_by_pk(
+        "sets the columns of the filtered rows to the given values"
+        _set: comments_set_input,
+        pk_columns: comments_pk_columns_input!
+    ): comments
+    "update data of the table: \"todo\""
+    update_todo(
+        "sets the columns of the filtered rows to the given values"
+        _set: todo_set_input,
+        "filter the rows which have to be updated"
+        where: todo_bool_exp!
+    ): todo_mutation_response
+    "update single row of the table: \"todo\""
+    update_todo_by_pk(
+        "sets the columns of the filtered rows to the given values"
+        _set: todo_set_input,
+        pk_columns: todo_pk_columns_input!
+    ): todo
+}
+
+"query root"
+type query_root {
+    "fetch data from the table: \"comments\""
+    comments(
+        "distinct select on columns"
+        distinct_on: [comments_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [comments_order_by!],
+        "filter the rows returned"
+        where: comments_bool_exp
+    ): [comments!]!
+    "fetch data from the table: \"comments\" using primary key columns"
+    comments_by_pk(id: uuid!): comments
+    "fetch data from the table: \"todo\""
+    todo(
+        "distinct select on columns"
+        distinct_on: [todo_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [todo_order_by!],
+        "filter the rows returned"
+        where: todo_bool_exp
+    ): [todo!]!
+    "fetch data from the table: \"todo\" using primary key columns"
+    todo_by_pk(id: uuid!): todo
+}
+
+"subscription root"
+type subscription_root {
+    "fetch data from the table: \"comments\""
+    comments(
+        "distinct select on columns"
+        distinct_on: [comments_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [comments_order_by!],
+        "filter the rows returned"
+        where: comments_bool_exp
+    ): [comments!]!
+    "fetch data from the table: \"comments\" using primary key columns"
+    comments_by_pk(id: uuid!): comments
+    "fetch data from the table: \"todo\""
+    todo(
+        "distinct select on columns"
+        distinct_on: [todo_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [todo_order_by!],
+        "filter the rows returned"
+        where: todo_bool_exp
+    ): [todo!]!
+    "fetch data from the table: \"todo\" using primary key columns"
+    todo_by_pk(id: uuid!): todo
+}
+
+"columns and relationships of \"todo\""
+type todo {
+    "An array relationship"
+    comments(
+        "distinct select on columns"
+        distinct_on: [comments_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [comments_order_by!],
+        "filter the rows returned"
+        where: comments_bool_exp
+    ): [comments!]!
+    complete: Boolean
+    created_at: timestamptz!
+    description: String
+    id: uuid!
+    title: String!
+    updated_at: timestamptz!
+}
+
+"response of any mutation on the table \"todo\""
+type todo_mutation_response {
+    "number of affected rows by the mutation"
+    affected_rows: Int!
+    "data of the affected rows by the mutation"
+    returning: [todo!]!
+}
+
+"unique or primary key constraints on table \"comments\""
+enum comments_constraint {
+    "unique or primary key constraint"
+    comments_pkey
+}
+
+"select columns of table \"comments\""
+enum comments_select_column {
+    "column name"
+    comment
+    "column name"
+    created_at
+    "column name"
+    id
+    "column name"
+    todo_id
+    "column name"
+    updated_at
+}
+
+"update columns of table \"comments\""
+enum comments_update_column {
+    "column name"
+    comment
+    "column name"
+    id
+    "column name"
+    todo_id
+}
+
+"column ordering options"
+enum order_by {
+    "in the ascending order, nulls last"
+    asc
+    "in the ascending order, nulls first"
+    asc_nulls_first
+    "in the ascending order, nulls last"
+    asc_nulls_last
+    "in the descending order, nulls first"
+    desc
+    "in the descending order, nulls first"
+    desc_nulls_first
+    "in the descending order, nulls last"
+    desc_nulls_last
+}
+
+"unique or primary key constraints on table \"todo\""
+enum todo_constraint {
+    "unique or primary key constraint"
+    todo_pkey
+}
+
+"select columns of table \"todo\""
+enum todo_select_column {
+    "column name"
+    complete
+    "column name"
+    created_at
+    "column name"
+    description
+    "column name"
+    id
+    "column name"
+    title
+    "column name"
+    updated_at
+}
+
+"update columns of table \"todo\""
+enum todo_update_column {
+    "column name"
+    complete
+    "column name"
+    description
+    "column name"
+    id
+    "column name"
+    title
+}
+
+"expression to compare columns of type Boolean. All fields are combined with logical 'AND'."
+input Boolean_comparison_exp {
+    _eq: Boolean
+    _gt: Boolean
+    _gte: Boolean
+    _in: [Boolean!]
+    _is_null: Boolean
+    _lt: Boolean
+    _lte: Boolean
+    _neq: Boolean
+    _nin: [Boolean!]
+}
+
+"expression to compare columns of type String. All fields are combined with logical 'AND'."
+input String_comparison_exp {
+    _eq: String
+    _gt: String
+    _gte: String
+    _ilike: String
+    _in: [String!]
+    _is_null: Boolean
+    _like: String
+    _lt: String
+    _lte: String
+    _neq: String
+    _nilike: String
+    _nin: [String!]
+    _nlike: String
+    _nsimilar: String
+    _similar: String
+}
+
+"input type for inserting array relation for remote table \"comments\""
+input comments_arr_rel_insert_input {
+    data: [comments_insert_input!]!
+    on_conflict: comments_on_conflict
+}
+
+"Boolean expression to filter rows from the table \"comments\". All fields are combined with a logical 'AND'."
+input comments_bool_exp {
+    _and: [comments_bool_exp]
+    _not: comments_bool_exp
+    _or: [comments_bool_exp]
+    comment: String_comparison_exp
+    created_at: timestamptz_comparison_exp
+    id: uuid_comparison_exp
+    todo: todo_bool_exp
+    todo_id: uuid_comparison_exp
+    updated_at: timestamptz_comparison_exp
+}
+
+"input type for inserting data into table \"comments\""
+input comments_insert_input {
+    comment: String
+    created_at: timestamptz
+    id: uuid
+    todo: todo_obj_rel_insert_input
+    todo_id: uuid
+    updated_at: timestamptz
+}
+
+"input type for inserting object relation for remote table \"comments\""
+input comments_obj_rel_insert_input {
+    data: comments_insert_input!
+    on_conflict: comments_on_conflict
+}
+
+"on conflict condition type for table \"comments\""
+input comments_on_conflict {
+    constraint: comments_constraint!
+    update_columns: [comments_update_column!]!
+    where: comments_bool_exp
+}
+
+"ordering options when selecting data from \"comments\""
+input comments_order_by {
+    comment: order_by
+    created_at: order_by
+    id: order_by
+    todo: todo_order_by
+    todo_id: order_by
+    updated_at: order_by
+}
+
+"primary key columns input for table: \"comments\""
+input comments_pk_columns_input {
+    id: uuid!
+}
+
+"input type for updating data in table \"comments\""
+input comments_set_input {
+    comment: String
+    id: uuid
+    todo_id: uuid
+}
+
+"expression to compare columns of type timestamptz. All fields are combined with logical 'AND'."
+input timestamptz_comparison_exp {
+    _eq: timestamptz
+    _gt: timestamptz
+    _gte: timestamptz
+    _in: [timestamptz!]
+    _is_null: Boolean
+    _lt: timestamptz
+    _lte: timestamptz
+    _neq: timestamptz
+    _nin: [timestamptz!]
+}
+
+"input type for inserting array relation for remote table \"todo\""
+input todo_arr_rel_insert_input {
+    data: [todo_insert_input!]!
+    on_conflict: todo_on_conflict
+}
+
+"Boolean expression to filter rows from the table \"todo\". All fields are combined with a logical 'AND'."
+input todo_bool_exp {
+    _and: [todo_bool_exp]
+    _not: todo_bool_exp
+    _or: [todo_bool_exp]
+    comments: comments_bool_exp
+    complete: Boolean_comparison_exp
+    created_at: timestamptz_comparison_exp
+    description: String_comparison_exp
+    id: uuid_comparison_exp
+    title: String_comparison_exp
+    updated_at: timestamptz_comparison_exp
+}
+
+"input type for inserting data into table \"todo\""
+input todo_insert_input {
+    comments: comments_arr_rel_insert_input
+    complete: Boolean
+    description: String
+    id: uuid
+    title: String
+}
+
+"input type for inserting object relation for remote table \"todo\""
+input todo_obj_rel_insert_input {
+    data: todo_insert_input!
+    on_conflict: todo_on_conflict
+}
+
+"on conflict condition type for table \"todo\""
+input todo_on_conflict {
+    constraint: todo_constraint!
+    update_columns: [todo_update_column!]!
+    where: todo_bool_exp
+}
+
+"ordering options when selecting data from \"todo\""
+input todo_order_by {
+    complete: order_by
+    created_at: order_by
+    description: order_by
+    id: order_by
+    title: order_by
+    updated_at: order_by
+}
+
+"primary key columns input for table: \"todo\""
+input todo_pk_columns_input {
+    id: uuid!
+}
+
+"input type for updating data in table \"todo\""
+input todo_set_input {
+    complete: Boolean
+    description: String
+    id: uuid
+    title: String
+}
+
+"expression to compare columns of type uuid. All fields are combined with logical 'AND'."
+input uuid_comparison_exp {
+    _eq: uuid
+    _gt: uuid
+    _gte: uuid
+    _in: [uuid!]
+    _is_null: Boolean
+    _lt: uuid
+    _lte: uuid
+    _neq: uuid
+    _nin: [uuid!]
+}
+
+
+scalar timestamptz
+
+scalar uuid

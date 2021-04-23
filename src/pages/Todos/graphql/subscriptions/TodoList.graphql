@@ -1,0 +1,8 @@
+subscription ToDoList($limit: Int, $offset: Int) {
+  todo(order_by: { created_at: desc }, limit: $limit, offset: $offset) {
+    id
+    title
+    complete
+    description
+  }
+}

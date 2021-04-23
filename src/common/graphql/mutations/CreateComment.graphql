@@ -1,0 +1,7 @@
+mutation CreateComment($comment: comments_insert_input!){
+    insert_comments_one(object: $comment){
+        id,
+        todo_id,
+        comment,
+    }
+}

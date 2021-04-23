@@ -1,0 +1,10 @@
+query SingleToDo($id: uuid!) {
+    todo_by_pk(id: $id){
+        id,
+        title,
+        description,
+        complete,
+        created_at,
+        updated_at,
+    }
+}

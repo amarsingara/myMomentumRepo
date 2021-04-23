@@ -1,0 +1,8 @@
+subscription TodoComments($todoId: uuid!) {
+  comments(where: { todo_id: { _eq: $todoId } }) {
+    id
+    comment
+    todo_id
+    description
+  }
+}

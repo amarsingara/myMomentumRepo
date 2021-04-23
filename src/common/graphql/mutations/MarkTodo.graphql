@@ -1,0 +1,7 @@
+mutation MarkTodo($id: uuid!, $complete: Boolean!) {
+  update_todo_by_pk(pk_columns: { id: $id }, _set: { complete: $complete }) {
+    id
+    complete
+    description
+  }
+}

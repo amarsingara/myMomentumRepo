@@ -1,0 +1,7 @@
+mutation CreateToDo($todo: todo_insert_input!){
+    insert_todo(objects: [$todo]){
+        returning {
+            id,
+        }
+    }
+}
